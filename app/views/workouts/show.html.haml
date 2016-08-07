@@ -54,26 +54,38 @@
             = image_tag 'play.png', class: 'ui fluid play image', exercise_id: exercise.id
             = image_tag 'pause.png', class: 'ui fluid pause image', exercise_id: exercise.id, style: 'display: none;'
         :javascript
-          $('img.play[exercise_id="#{exercise.id}"]').click(function() {
-            $('h1.ui.header[exercise_id="#{exercise.id}"]').countdown('#{(Time.now + exercise.rest_time.minutes).strftime('%Y/%m/%d %H:%M:%S')}', function(event) {
-              $('h1.ui.header[exercise_id="#{exercise.id}"]').text(event.strftime('%M:%S'));
-            });
-            $(this).css('display', 'none');
-            $('img.pause[exercise_id="#{exercise.id}"]').css('display', 'block');
-            $(this).unbind('click');
-            $(this).click(function() {
-              $('h1.ui.header[exercise_id="#{exercise.id}"]').countdown('resume');
+          function setUp() {
+            $('img.play[exercise_id="#{exercise.id}"]').css('display', 'block');
+            $('img.pause[exercise_id="#{exercise.id}"]').css('display', 'none');
+            $('img.play[exercise_id="#{exercise.id}"]').click(function() {
+              var d = new Date();
+              d.setMinutes(d.getMinutes() + #{exercise.rest_time});
+              $('h1.ui.header[exercise_id="#{exercise.id}"]').countdown(d, function(event) {
+                $(this).text(
+                  event.strftime('%M:%S')
+                );
+              });
               $(this).css('display', 'none');
               $('img.pause[exercise_id="#{exercise.id}"]').css('display', 'block');
+              $(this).unbind('click');
+              $(this).click(function() {
+                $('h1.ui.header[exercise_id="#{exercise.id}"]').countdown('resume');
+                $(this).css('display', 'none');
+                $('img.pause[exercise_id="#{exercise.id}"]').css('display', 'block');
+              });
             });
-          });
-          $('h1.ui.header[exercise_id="#{exercise.id}"]').on('stop.countdown', function(event) {
-            $(this).css('display', 'none');
-            $('img.play[exercise_id="#{exercise.id}"]').css('display', 'block');
-          });
-          $('img.pause[exercise_id="#{exercise.id}"]').click(function() {
-            $(this).css('display', 'none');
-            $('img.play[exercise_id="#{exercise.id}"]').css('display', 'block');
-            $('h1.ui.header[exercise_id="#{exercise.id}"]').countdown('pause');
+            $('h1.ui.header[exercise_id="#{exercise.id}"]').on('stop.countdown', function(event) {
+              $(this).css('display', 'none');
+              $('img.play[exercise_id="#{exercise.id}"]').css('display', 'block');
+            });
+            $('img.pause[exercise_id="#{exercise.id}"]').click(function() {
+              $(this).css('display', 'none');
+              $('img.play[exercise_id="#{exercise.id}"]').css('display', 'block');
+              $('h1.ui.header[exercise_id="#{exercise.id}"]').countdown('pause');
+            });
+          }
+          setUp();
+          $('h1.ui.header[exercise_id="#{exercise.id}"]').on('finish.countdown', function() {
+            setUp();
           });
 
