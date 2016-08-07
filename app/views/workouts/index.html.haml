@@ -21,10 +21,13 @@
 .ui.workouts.segment
   .ui.container
     %h1.ui.header Your Workouts
-    .ui.grid
-      - @workouts.each do |workout|
-        .workout.row
-          = link_to workout, class: 'box' do
-            .name.attr= workout.name
-            .days.attr #{workout.days} Days
-          
+    - if @workouts.count > 0
+      .ui.grid
+        - @workouts.each do |workout|
+          .workout.row
+            = link_to workout, class: 'box' do
+              .name.attr= workout.name
+              .days.attr #{workout.days} Days
+    - else
+      %h2.ui.header
+        %i It looks like you don't have any workouts yet! Create one above.

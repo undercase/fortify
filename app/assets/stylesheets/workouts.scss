@@ -99,6 +99,7 @@
   border-radius: 0;
   margin: 0 !important;
   box-shadow: none;
+  border: none;
   padding-bottom: 3rem;
 
   color: $green;
@@ -111,6 +112,13 @@
     font-family: 'GT-Walsheim';
     margin: auto;
     text-align: center;
+  }
+
+  h2.ui.header {
+    color: $green;
+    text-align: center;
+    margin: auto;
+    font-size: 1.5rem;
   }
 
   .field input {
