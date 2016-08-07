@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   resources :workouts, only: [:index, :show, :new, :create, :destroy] do
     resources :exercises, only: [:create]
   end
+  get '/workouts/:id/start', to: 'workouts#start', as: 'start_workout'
 end

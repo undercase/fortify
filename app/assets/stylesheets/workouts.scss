@@ -201,13 +201,27 @@
   color: $green;
 
   h1.ui.header {
+    display: inline-block;
     padding-top: 1rem;
-    padding-bottom: 2rem;
+    padding-bottom: 1rem;
+    margin-bottom: 0.5rem;
     color: $green;
-    text-size: 3rem;
-    text-align: center;
+    font-size: 2rem;
+    text-align: left;
     font-family: 'GT-Walsheim';
-    margin: auto;
+  }
+
+  .right.aligned.button {
+    display: inline-block;
+    float: right;
+    font-size: 1.25rem;
+
+    background: $green;
+    border: $green;
+
+    &:hover {
+      background: rgba(80, 172, 111, 0.9);
+    }
   }
 
   .ui.grid {

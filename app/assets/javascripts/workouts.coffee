@@ -2,6 +2,9 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).on 'turbolinks:load', ->
+  $('.start.button').click ->
+    $(this).text('Started')
+    $(this).addClass('disabled')
   $('.workout .box').hover(->
     $(this).stop().animate({
       'background-color': '#50ac6f',

@@ -10,6 +10,8 @@
 .ui.workout.segment
   .ui.container
     %h1.ui.header #{@workout.name}
+    = link_to start_workout_path(@workout), remote: true do
+      .ui.right.aligned.green.start.button Start
     .ui.two.column.divided.grid
       .exercise.column
         %h2.ui.header Add an Exercise
@@ -54,6 +56,27 @@
             = image_tag 'play.png', class: 'ui fluid play image', exercise_id: exercise.id
             = image_tag 'pause.png', class: 'ui fluid pause image', exercise_id: exercise.id, style: 'display: none;'
         :javascript
+          $('.start.button').click(function() {
+            var id = #{@exercises.first.id};
+            var play = $('img.play[exercise_id="#{@exercises.first.id}"]');
+            var pause = $('img.pause[exercise_id="#{@exercises.first.id}"]');
+            var header = $('h1.ui.header[exercise_id="#{@exercises.first.id}"]');
+            var d = new Date();
+            d.setMinutes(d.getMinutes() + #{@exercises.first.rest_time});
+            header.countdown(d, function(event) {
+              header.text(
+                event.strftime('%M:%S')
+              );
+            });
+            play.css('display', 'none');
+            pause.css('display', 'block');
+            play.unbind('click');
+            play.click(function() {
+              header.countdown('resume');
+              play.css('display', 'none');
+              pause.css('display', 'block');
+            });
+          });
           function setUp() {
             $('img.play[exercise_id="#{exercise.id}"]').css('display', 'block');
             $('img.pause[exercise_id="#{exercise.id}"]').css('display', 'none');
