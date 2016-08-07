@@ -9,6 +9,8 @@ body {
 }
 
 .ui.large.secondary.menu {
+  z-index: 100;
+  position: relative;
   height: 8vh;
   margin-top: 0 !important;
   background: $green;

@@ -33,7 +33,7 @@
           = f.hidden_field :rest
           = f.submit 'Add Rest',  class: 'ui button'
     - @exercises.each do |exercise|
-      .exercise.display.ui.grid
+      .exercise.display.ui.stackable.grid
         - if exercise.rest
           .eleven.wide.column
             %h1.ui.header Rest

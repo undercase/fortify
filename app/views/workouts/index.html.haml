@@ -7,16 +7,21 @@
     .right.menu
       = link_to session_path, class: 'ui item', method: :delete do
         %h3.ui.header Sign Out
+.ui.new.segment
+  .bg
+  .ui.container
+    .ui.stackable.grid
+      %h1.ui.header Create a new workout
+      = form_for @workout, url: workouts_path, method: :post, html: {class: 'ui form row'} do |f|
+        .eleven.wide.column
+          .field
+            = f.text_field :name, placeholder: 'Give your new workout a cool name...'
+        .five.wide.column
+          = f.submit 'Start Fortifying', class: 'ui button'
 .ui.workouts.segment
   .ui.container
     %h1.ui.header Your Workouts
     .ui.grid
-      = form_for @workout, url: workouts_path, method: :post, html: {class: 'ui form row'} do |f|
-        .thirteen.wide.column
-          .field
-            = f.text_field :name, placeholder: 'Give your new workout a cool name...'
-        .three.wide.column
-          = f.submit 'Start Fortifying', class: 'ui button'
       - @workouts.each do |workout|
         .workout.row
           = link_to workout, class: 'box' do

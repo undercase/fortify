@@ -7,14 +7,99 @@
   margin-bottom: 0;
 }
 
+.ui.new.segment {
+  width: 100%;
+  height: 500px;
+  background: #000;
+
+  border-radius: 0;
+  margin: 0 !important;
+  box-shadow: none;
+  position: relative;
+  overflow: hidden;
+
+  .ui.container {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    max-width: 800px !important;
+  }
+
+  .bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: image-url('running.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.4;
+  }
+
+  h1.ui.header {
+    margin: auto;
+    text-align: center;
+    color: #fff;
+    font-family: $logo-font;
+    font-size: 5rem;
+  }
+
+  .ui.grid {
+    margin: auto;
+    .field input {
+      width: 100%;
+      font-size: 1.5rem;
+      border: 2px solid #fff;
+      border-radius: 3px;
+      background: transparent;
+      color: #fff;
+      box-shadow: none;
+      &::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+        color: #fff;
+        opacity: 0.9;
+      }
+      &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+        color: #fff;
+        opacity: 0.9;
+      }
+      &::-moz-placeholder { /* Mozilla Firefox 19+ */
+        color: #fff;
+        opacity: 0.9;
+      }
+      &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+        color: #fff;
+        opacity: 0.9;
+      }
+    }
+
+    .ui.button {
+      padding-left: 0;
+      padding-right: 0;
+      text-align: center;
+      width: 100%;
+      font-size: 1.5rem;
+      border: 2px solid #fff;
+      background: transparent;
+      color: #fff;
+      box-shadow: none;
+
+      &:hover {
+        background: #fff;
+        color: #000;
+      }
+    }
+  }
+}
+
 .ui.workouts.segment {
   width: 100%;
-  height: 100%;
   background: #fff;
 
   border-radius: 0;
   margin: 0 !important;
   box-shadow: none;
+  padding-bottom: 3rem;
 
   color: $green;
 
@@ -98,7 +183,7 @@
 
 .ui.workout.segment {
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   background: #fff;
 
   border-radius: 0;
