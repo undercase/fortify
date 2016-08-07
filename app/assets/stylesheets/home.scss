@@ -1,0 +1,110 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'colorscheme';
+
+body {
+  background: #000 !important;
+  height: 100vh;
+}
+
+.ui.large.secondary.menu {
+  height: 8vh;
+  margin-top: 0 !important;
+  background: $green;
+  color: #fff;
+  h1 {
+    font-size: 3rem;
+  }
+  a {
+    color: #fff;
+  }
+  .ui.item {
+    cursor: pointer;
+    color: #fff;
+    opacity: 1;
+    &:hover {
+      opacity: 0.7;
+    }
+
+    .ui.header {
+      color: #fff;
+    }
+  }
+}
+
+video#bgvid {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100vh;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  background: #000;
+  background-size: cover; 
+  opacity: 0.5;
+}
+
+.ui.masthead.segment {
+  height: 92vh;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  color: #fff;
+  text-align: center;
+  transform-style: preserve-3d;
+  .inner {
+    margin: auto;
+    max-width: 722px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    h1 {
+      font-size: 6rem;
+      color: inherit;
+      margin: auto;
+      font-weight: normal;
+    }
+    .ui.input {
+      padding: 1rem;
+      font-size: 1.5rem;
+      background: transparent;
+      border: 2px solid #fff;
+      border-radius: 3px;
+      color: #fff;
+      width: 100%;
+      &::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+        color: #fff;
+        opacity: 0.9;
+      }
+      &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+        color: #fff;
+        opacity: 0.9;
+      }
+      &::-moz-placeholder { /* Mozilla Firefox 19+ */
+        color: #fff;
+        opacity: 0.9;
+      }
+      &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+        color: #fff;
+        opacity: 0.9;
+      }
+    }
+
+    .ui.button {
+      font-size: 1.5rem;
+      padding-top: 1.3rem !important;
+      padding-bottom: 1rem !important;
+      width: 100%;
+      border-radius: 3px;
+      height: 100%;
+    }
+  }
+}

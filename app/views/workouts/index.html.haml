@@ -1,0 +1,25 @@
+.ui.large.secondary.workout.menu#main_menu
+  .ui.container
+    = link_to root_path, class: 'ui item' do
+      %h1.ui.header fortify
+    = link_to workouts_path, class: 'ui item' do
+      %h3.ui.header Workouts
+    .right.menu
+      = link_to session_path, class: 'ui item', method: :delete do
+        %h3.ui.header Sign Out
+.ui.workouts.segment
+  .ui.container
+    %h1.ui.header Your Workouts
+    .ui.grid
+      = form_for @workout, url: workouts_path, method: :post, html: {class: 'ui form row'} do |f|
+        .thirteen.wide.column
+          .field
+            = f.text_field :name, placeholder: 'Give your new workout a cool name...'
+        .three.wide.column
+          = f.submit 'Start Fortifying', class: 'ui button'
+      - @workouts.each do |workout|
+        .workout.row
+          = link_to workout, class: 'box' do
+            .name.attr= workout.name
+            .days.attr #{workout.days} Days
+          

@@ -1,0 +1,63 @@
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "colorscheme";
+
+.ui.full.segment {
+  background: #50ac6f; /* Old browsers */
+  background: -moz-linear-gradient(top, #50ac6f 0%, #66aa7d 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #50ac6f 0%,#66aa7d 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #50ac6f 0%,#66aa7d 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+  height: 100vh;
+  width: 100%;
+  transform-style: preserve-3d;
+
+  .inner {
+    color: #fff;
+    text-align: center;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    a {
+      color: #fff;
+    }
+    h1 {
+      font-size: 6.5rem !important;
+    }
+    .ui.header {
+      color: inherit;
+      font-family: $logo-font;
+    }
+
+    .ui.form {
+      max-width: 300px;
+      margin: auto;
+      margin-top: 2rem;
+      .field input {
+        background: transparent;
+        border: 2px solid #fff;
+        border-radius: 3px;
+        color: #fff;
+        box-shadow: none;
+        &::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+          color: #fff;
+          opacity: 0.8;
+        }
+        &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+          color: #fff;
+          opacity: 0.8;
+        }
+        &::-moz-placeholder { /* Mozilla Firefox 19+ */
+          color: #fff;
+          opacity: 0.8;
+        }
+        &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+          color: #fff;
+          opacity: 0.8;
+        }
+
+      }
+    }
+  }
+}

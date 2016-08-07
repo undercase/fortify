@@ -1,0 +1,79 @@
+.ui.large.secondary.workout.menu#main_menu
+  .ui.container
+    = link_to root_path, class: 'ui item' do
+      %h1.ui.header fortify
+    = link_to workouts_path, class: 'ui item' do
+      %h3.ui.header Workouts
+    .right.menu
+      = link_to session_path, class: 'ui item', method: :delete do
+        %h3.ui.header Sign Out
+.ui.workout.segment
+  .ui.container
+    %h1.ui.header #{@workout.name}
+    .ui.two.column.divided.grid
+      .exercise.column
+        %h2.ui.header Add an Exercise
+        = form_for @exercise, url: workout_exercises_path(@workout), method: :post, html: {class: 'ui form'} do |f|
+          .name.field
+            = f.text_field :name, placeholder: 'Exercise Name'
+          .two.fields
+            .sets.field
+              = f.text_field :sets, placeholder: '# of Sets'
+            .reps.field
+              = f.text_field :reps, placeholder: '# of Reps'
+          .rest.field
+            = f.text_field :rest_time, placeholder: 'Rest Time Between Sets (Minutes)'
+          = f.hidden_field :rest
+          = f.submit 'Add Exercise',  class: 'ui button'
+      .rest.column
+        %h2.ui.header Add a Rest
+        = form_for @rest, url: workout_exercises_path(@workout), method: :post, html: {class: 'ui form'} do |f|
+          .rest_time.field
+            = f.text_field :rest_time, placeholder: 'Rest Time (Minutes)'
+          = f.hidden_field :rest
+          = f.submit 'Add Rest',  class: 'ui button'
+    - @exercises.each do |exercise|
+      .exercise.display.ui.grid
+        - if exercise.rest
+          .eleven.wide.column
+            %h1.ui.header Rest
+          .four.wide.column
+            %h1.ui.header{exercise_id: exercise.id} #{exercise.rest_time}min
+          .one.wide.rest.column
+            = image_tag 'play.png', class: 'ui fluid play image', exercise_id: exercise.id
+            = image_tag 'pause.png', class: 'ui fluid pause image', exercise_id: exercise.id, style: 'display: none;'
+
+        - else
+          .eleven.wide.column
+            %h1.ui.header= exercise.name
+            %h2.ui.header #{pluralize(exercise.sets, 'Set')} of #{pluralize(exercise.reps, 'Rep')}
+          .four.wide.column
+            %h1.ui.header{exercise_id: exercise.id} #{exercise.rest_time}min
+            %h2.ui.header Rest Between Sets
+          .one.wide.exercise.column
+            = image_tag 'play.png', class: 'ui fluid play image', exercise_id: exercise.id
+            = image_tag 'pause.png', class: 'ui fluid pause image', exercise_id: exercise.id, style: 'display: none;'
+        :javascript
+          $('img.play[exercise_id="#{exercise.id}"]').click(function() {
+            $('h1.ui.header[exercise_id="#{exercise.id}"]').countdown('#{(Time.now + exercise.rest_time.minutes).strftime('%Y/%m/%d %H:%M:%S')}', function(event) {
+              $('h1.ui.header[exercise_id="#{exercise.id}"]').text(event.strftime('%M:%S'));
+            });
+            $(this).css('display', 'none');
+            $('img.pause[exercise_id="#{exercise.id}"]').css('display', 'block');
+            $(this).unbind('click');
+            $(this).click(function() {
+              $('h1.ui.header[exercise_id="#{exercise.id}"]').countdown('resume');
+              $(this).css('display', 'none');
+              $('img.pause[exercise_id="#{exercise.id}"]').css('display', 'block');
+            });
+          });
+          $('h1.ui.header[exercise_id="#{exercise.id}"]').on('stop.countdown', function(event) {
+            $(this).css('display', 'none');
+            $('img.play[exercise_id="#{exercise.id}"]').css('display', 'block');
+          });
+          $('img.pause[exercise_id="#{exercise.id}"]').click(function() {
+            $(this).css('display', 'none');
+            $('img.play[exercise_id="#{exercise.id}"]').css('display', 'block');
+            $('h1.ui.header[exercise_id="#{exercise.id}"]').countdown('pause');
+          });
+

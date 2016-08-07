@@ -1,0 +1,10 @@
+.ui.full.segment
+  .inner
+    = link_to root_path do
+      %h1.ui.header fortify
+    = form_for :session, url: sessions_path, method: :post, html: {class: 'ui form'} do |f|
+      .field
+        = f.text_field :email, placeholder: 'Email'
+      .field
+        = f.password_field :password, placeholder: 'Password'
+      = f.submit "Sign In", class: 'ui inverted button'

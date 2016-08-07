@@ -1,0 +1,11 @@
+@import "semantic-ui";
+
+@font-face {
+  font-family: 'GT-Walsheim';
+  src:url('../GT-Walsheim.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+$logo-font: 'GT-Walsheim';
+$green: #50ac6f;

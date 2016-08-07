@@ -1,0 +1,16 @@
+.ui.full.segment
+  .inner
+    = link_to root_path do
+      %h1.ui.header fortify
+    %h2.ui.header fitness is just a form away...
+    = form_for @user, url: users_path, method: :post, html: {class: 'ui form'} do |f|
+      .field
+        = f.text_field :email, placeholder: 'Email'
+      .field
+        = f.text_field :first_name, placeholder: 'Your Name'
+      .two.fields
+        .field
+          = f.password_field :password, placeholder: 'Password'
+        .field
+          = f.password_field :password_confirmation, placeholder: 'Confirm Password'
+      = f.submit "Get Started", class: 'ui inverted button'

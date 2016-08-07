@@ -1,0 +1,21 @@
+= video_tag "training.mp4", playsinline: '', autoplay: '', muted: '', loop: '', id: 'bgvid'
+.ui.top.fixed.large.secondary.menu#main_menu
+  .ui.container
+    = link_to root_path, class: 'ui item' do
+      %h1.ui.header fortify
+    .right.menu
+      = link_to new_user_path, class: 'ui item' do
+        %h3.ui.header Sign Up
+      = link_to new_session_path, class: 'ui item' do
+        %h3.ui.header Sign In
+.ui.masthead.segment
+  .inner
+    .ui.container.grid
+      .row
+        .sixteen.wide.column
+          %h1 Get fit with <b>Fortify</b>
+      = form_for @user, html: {class: 'row'}, url: new_user_path, method: :get do |f|
+        .twelve.wide.column
+          = f.text_field :email, class: 'ui input', placeholder: 'Enter your email to get started'
+        .four.wide.column
+          = f.submit "Let's Go!", class: 'ui inverted button'

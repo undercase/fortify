@@ -1,0 +1,12 @@
+.ui.large.secondary.workout.menu#main_menu
+  .ui.container
+    = link_to root_path, class: 'ui item' do
+      %h1.ui.header fortify
+    = link_to workouts_path, class: 'ui item' do
+      %h3.ui.header Workouts
+    .right.menu
+      = link_to session_path, class: 'ui item', method: :delete do
+        %h3.ui.header Sign Out
+.ui.workout.segment
+  %h1.ui.header= workout.name
+  %h1.ui.header= workout.days
