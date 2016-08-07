@@ -2,6 +2,11 @@
   .inner
     = link_to root_path do
       %h1.ui.header fortify
+    - if @user.errors.any?
+      .errors
+        %h2.ui.header The form contained some errors
+        - @user.errors.full_messages.each do |error|
+          %h3.ui.header= error
     = form_for :session, url: sessions_path, method: :post, html: {class: 'ui form'} do |f|
       .field
         = f.text_field :email, placeholder: 'Email'

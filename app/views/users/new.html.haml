@@ -3,6 +3,11 @@
     = link_to root_path do
       %h1.ui.header fortify
     %h2.ui.header fitness is just a form away...
+    - if @user.errors.any?
+      .errors
+        %h2.ui.header The form contained some errors
+        - @user.errors.full_messages.each do |error|
+          %h3.ui.header= error
     = form_for @user, url: users_path, method: :post, html: {class: 'ui form'} do |f|
       .field
         = f.text_field :email, placeholder: 'Email'

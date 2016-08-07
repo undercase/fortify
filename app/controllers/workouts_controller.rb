@@ -25,7 +25,9 @@ class WorkoutsController < ApplicationController
 
   def create
     @workout = current_user.workouts.create(workout_params)
-    @workout.update_attributes(days: 0)
+    if @workout.save
+      @workout.update_attributes(days: 0)
+    end
     redirect_to workouts_path
   end
 

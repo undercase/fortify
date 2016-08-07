@@ -12,6 +12,11 @@
   .ui.container
     .ui.stackable.grid
       %h1.ui.header Create a new workout
+      - if @workout.errors.any?
+        .errors
+          %h2.ui.header The form contained some errors
+          - @workout.errors.full_messages.each do |error|
+            %h3.ui.header= error
       = form_for @workout, url: workouts_path, method: :post, html: {class: 'ui form row'} do |f|
         .eleven.wide.column
           .field

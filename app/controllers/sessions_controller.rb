@@ -1,14 +1,22 @@
 class SessionsController < ApplicationController
   def new
+    @user = User.new
   end
 
   def create
-    user = User.find_by_email(params[:session][:email])
-    if user && user.authenticate(params[:session][:password])
-      session[:user_id] = user.id
-      redirect_to root_path
+    @user = User.find_by_email(params[:session][:email])
+    if @user 
+      if @user.authenticate(params[:session][:password])
+        session[:user_id] = @user.id
+        redirect_to root_path
+      else
+        @user.errors.add(:password, :blank, message: 'was incorrect')
+        render 'new'
+      end
     else
-      redirect_to new_session_path
+      @user = User.new
+      @user.errors.add(:email, :blank, message: 'was incorrect')
+      render 'new'
     end
   end
 
