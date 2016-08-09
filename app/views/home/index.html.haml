@@ -13,7 +13,7 @@
     .ui.container.stackable.grid
       .row
         .sixteen.wide.column
-          %h1 Get fit with <b>Fortify</b>
+          %h1 Get fit with <b>fortify</b>
       = form_for @user, html: {class: 'row'}, url: new_user_path, method: :get do |f|
         .twelve.wide.column
           = f.text_field :email, class: 'ui input', placeholder: 'Enter your email to get started'
