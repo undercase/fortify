@@ -4,6 +4,7 @@
 $(document).on 'turbolinks:load', ->
   $(window).scroll ->
     if $(window).scrollTop() > 5
-      $('#main_menu').stop().animate({'background-color': 'rgba(80,172,111,1)'}, 500)
+      if $(window).scrollTop() < 50 or $(window).scrollTop() > 200
+        $('.home.menu').stop().animate({'background-color': 'rgba(80,172,111,1)'}, 500)
     else
-      $('#main_menu').stop().animate({'background-color': 'rgba(80,172,111,0)'}, 500)
+      $('.home.menu').stop().animate({'background-color': 'rgba(80,172,111,0)'}, 500)
