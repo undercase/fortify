@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   delete '/sessions', to: 'sessions#destroy', as: 'session'
 
   resources :workouts, only: [:index, :show, :new, :create, :destroy] do
-    resources :exercises, only: [:create]
+    resources :exercises, only: [:create, :destroy]
   end
   get '/workouts/:id/start', to: 'workouts#start', as: 'start_workout'
 end
