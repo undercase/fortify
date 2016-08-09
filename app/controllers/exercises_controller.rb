@@ -7,12 +7,11 @@ class ExercisesController < ApplicationController
     redirect_to workout_path(@workout)
   end
   
-  def delete
+  def destroy
     @workout = Workout.find(params[:workout_id])
     if @workout.user == current_user
       @exercise = Exercise.find(params[:id])
       @exercise.destroy
-      redirect_to workout_path(@workout)
     else
       redirect_to root_path
     end

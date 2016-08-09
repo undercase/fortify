@@ -10,8 +10,12 @@
 .ui.workout.segment
   .ui.container
     %h1.ui.header #{@workout.name}
-    = link_to start_workout_path(@workout), remote: true do
-      .ui.right.aligned.green.start.button Start
+    .buttons
+      = link_to start_workout_path(@workout), class: 'start link', remote: true do
+        .ui.right.aligned.green.start.button Start
+      .ui.icon.edit.actions.button
+        %i.write.icon
+        %i.checkmark.icon
     .ui.two.column.divided.grid
       .exercise.column
         %h2.ui.header Add an Exercise
@@ -41,10 +45,12 @@
             %h1.ui.header Rest
           .four.wide.column
             %h1.ui.header{exercise_id: exercise.id} #{exercise.rest_time}min
-          .one.wide.rest.column
-            = image_tag 'play.png', class: 'ui fluid play image', exercise_id: exercise.id
-            = image_tag 'pause.png', class: 'ui fluid pause image', exercise_id: exercise.id, style: 'display: none;'
-
+          .one.wide.rest.middle.aligned.column
+            %i.big.play.icon{exercise_id: exercise.id}
+            %i.big.pause.icon{exercise_id: exercise.id}
+          .one.wide.delete.middle.aligned.column
+            = link_to workout_exercise_path(@workout, exercise), remote: true, method: :delete do
+              %i.remove.big.icon
         - else
           .eleven.wide.column
             %h1.ui.header= exercise.name
@@ -52,14 +58,17 @@
           .four.wide.column
             %h1.ui.header{exercise_id: exercise.id} #{exercise.rest_time}min
             %h2.ui.header Rest Between Sets
-          .one.wide.exercise.column
-            = image_tag 'play.png', class: 'ui fluid play image', exercise_id: exercise.id
-            = image_tag 'pause.png', class: 'ui fluid pause image', exercise_id: exercise.id, style: 'display: none;'
+          .one.wide.exercise.middle.aligned.column
+            %i.big.play.icon{exercise_id: exercise.id}
+            %i.big.pause.icon{exercise_id: exercise.id}
+          .one.wide.delete.middle.aligned.column
+            = link_to workout_exercise_path(@workout, exercise), remote: true, method: :delete do
+              %i.remove.big.icon
         :javascript
           $('.start.button').click(function() {
             var id = #{@exercises.first.id};
-            var play = $('img.play[exercise_id="#{@exercises.first.id}"]');
-            var pause = $('img.pause[exercise_id="#{@exercises.first.id}"]');
+            var play = $('i.play[exercise_id="#{@exercises.first.id}"]');
+            var pause = $('i.pause[exercise_id="#{@exercises.first.id}"]');
             var header = $('h1.ui.header[exercise_id="#{@exercises.first.id}"]');
             var d = new Date();
             d.setMinutes(d.getMinutes() + #{@exercises.first.rest_time});
@@ -78,9 +87,9 @@
             });
           });
           function setUp() {
-            $('img.play[exercise_id="#{exercise.id}"]').css('display', 'block');
-            $('img.pause[exercise_id="#{exercise.id}"]').css('display', 'none');
-            $('img.play[exercise_id="#{exercise.id}"]').click(function() {
+            $('i.play[exercise_id="#{exercise.id}"]').css('display', 'block');
+            $('i.pause[exercise_id="#{exercise.id}"]').css('display', 'none');
+            $('i.play[exercise_id="#{exercise.id}"]').click(function() {
               var d = new Date();
               d.setMinutes(d.getMinutes() + #{exercise.rest_time});
               $('h1.ui.header[exercise_id="#{exercise.id}"]').countdown(d, function(event) {
@@ -89,21 +98,21 @@
                 );
               });
               $(this).css('display', 'none');
-              $('img.pause[exercise_id="#{exercise.id}"]').css('display', 'block');
+              $('i.pause[exercise_id="#{exercise.id}"]').css('display', 'block');
               $(this).unbind('click');
               $(this).click(function() {
                 $('h1.ui.header[exercise_id="#{exercise.id}"]').countdown('resume');
                 $(this).css('display', 'none');
-                $('img.pause[exercise_id="#{exercise.id}"]').css('display', 'block');
+                $('i.pause[exercise_id="#{exercise.id}"]').css('display', 'block');
               });
             });
             $('h1.ui.header[exercise_id="#{exercise.id}"]').on('stop.countdown', function(event) {
               $(this).css('display', 'none');
-              $('img.play[exercise_id="#{exercise.id}"]').css('display', 'block');
+              $('i.play[exercise_id="#{exercise.id}"]').css('display', 'block');
             });
-            $('img.pause[exercise_id="#{exercise.id}"]').click(function() {
+            $('i.pause[exercise_id="#{exercise.id}"]').click(function() {
               $(this).css('display', 'none');
-              $('img.play[exercise_id="#{exercise.id}"]').css('display', 'block');
+              $('i.play[exercise_id="#{exercise.id}"]').css('display', 'block');
               $('h1.ui.header[exercise_id="#{exercise.id}"]').countdown('pause');
             });
           }

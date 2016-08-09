@@ -211,16 +211,28 @@
     font-family: 'GT-Walsheim';
   }
 
-  .right.aligned.button {
+  .buttons {
     display: inline-block;
+    padding-top: 0.4rem;
     float: right;
-    font-size: 1.25rem;
+    .button {
+      display: inline-block;
+      font-size: 1.25rem;
 
-    background: $green;
-    border: $green;
+      background: $green;
+      border: $green;
 
-    &:hover {
-      background: rgba(80, 172, 111, 0.9);
+      &:hover {
+        background: rgba(80, 172, 111, 0.9);
+      }
+
+      i {
+        color: #fff;
+      }
+
+      .checkmark.icon {
+        display: none;
+      }
     }
   }
 
@@ -315,20 +327,24 @@
       text-align: left;
     }
 
-    .ui.fluid.image {
+    i {
       width: 100%;
-      position: relative;
       margin: auto;
       cursor: pointer;
     }
 
     .exercise.column .ui.fluid.image {
       padding: 1rem;
-      padding-top: 2rem;
     }
 
-    .rest.column .ui.fluid.image {
-      padding: 1rem;
+    .delete.column {
+      display: none;
+      a {
+        width: 100%;
+        i {
+          color: $green;
+        }
+      }
     }
   }
 }

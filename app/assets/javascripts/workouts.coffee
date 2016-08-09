@@ -16,3 +16,12 @@ $(document).on 'turbolinks:load', ->
       'color': '#50ac6f'
     }, 200)
   )
+  $('.actions.button').click ->
+    $('.one.exercise.column').toggle()
+    $('.one.rest.column').toggle()
+    $('.delete.column').toggle()
+    $('.actions.button i').toggle()
+
+  $('.remove.icon').click ->
+    $(this).closest('.exercise.display').fadeOut()
+
