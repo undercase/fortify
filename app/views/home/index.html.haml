@@ -19,6 +19,22 @@
           = f.text_field :email, class: 'ui input', placeholder: 'Enter your email to get started'
         .four.wide.column
           = f.submit "Let's Go!", class: 'ui inverted button'
+.ui.features.segment
+  .ui.container
+    %h1.ui.header <span class="logo">fortify</span> is exercise made simple
+    .ui.stackable.equal.height.grid
+      .ten.wide.column
+        = image_tag 'screen.png', class: 'ui fluid image'
+      .six.wide.column
+        .container
+          %h2.ui.header Manage your workouts
+          %p fortify allows you to store your workouts, and automatically handles exercise timing.
+        .container
+          %h2.ui.header Track your progress
+          %p fortify tracks how often you work out and your workout schedule to help you progress.
+        .container
+          %h2.ui.header Time your sessions
+          %p fortify incorporates automatic timers that help you stay focused during long routines.
 .ui.pro.segment
   .ui.container
     %h1.ui.header <span class="coming">Coming Soon:</span> <span class="logo">fortify pro</span>
@@ -37,22 +53,6 @@
         .box
           %h1.ui.header Advanced Tracking
           = image_tag 'stat.png', class: 'ui fluid image'
-.ui.features.segment
-  .ui.container
-    %h1.ui.header <span class="logo">fortify</span> is exercise made simple
-    .ui.stackable.equal.height.grid
-      .ten.wide.column
-        = image_tag 'screen.png', class: 'ui fluid image'
-      .six.wide.column
-        .container
-          %h2.ui.header Manage your workouts
-          %p fortify allows you to store your workouts, and automatically handles exercise timing.
-        .container
-          %h2.ui.header Track your progress
-          %p fortify tracks how often you work out and your workout schedule to help you progress.
-        .container
-          %h2.ui.header Time your sessions
-          %p fortify incorporates automatic timers that help you stay focused during long routines.
 :css
   body {
     background: #000 !important;
