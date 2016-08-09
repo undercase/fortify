@@ -219,6 +219,8 @@
       display: inline-block;
       font-size: 1.25rem;
 
+      margin-bottom: 1rem;
+
       background: $green;
       border: $green;
 
@@ -236,7 +238,7 @@
     }
   }
 
-  .ui.grid {
+  .ui.add.grid {
     border: 2px solid $green;
     border-radius: 3px;
     margin: 0;
@@ -244,6 +246,7 @@
 
     .column {
       text-align: center;
+      padding: 1rem !important;
 
       .field input {
         border: 1px solid $green;

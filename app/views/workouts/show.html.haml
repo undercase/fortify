@@ -9,14 +9,17 @@
         %h3.ui.header Sign Out
 .ui.workout.segment
   .ui.container
-    %h1.ui.header #{@workout.name}
-    .buttons
-      = link_to start_workout_path(@workout), class: 'start link', remote: true do
-        .ui.right.aligned.green.start.button Start
-      .ui.icon.edit.actions.button
-        %i.write.icon
-        %i.checkmark.icon
-    .ui.two.column.divided.grid
+    .ui.grid
+      .ten.wide.column
+        %h1.ui.header #{@workout.name}
+      .six.wide.right.aligned.column
+        .buttons
+          = link_to start_workout_path(@workout), class: 'start link', remote: true do
+            .ui.right.aligned.green.start.button Start
+          .ui.icon.edit.actions.button
+            %i.write.icon
+            %i.checkmark.icon
+    .ui.two.column.divided.stackable.add.grid
       .exercise.column
         %h2.ui.header Add an Exercise
         = form_for @exercise, url: workout_exercises_path(@workout), method: :post, html: {class: 'ui form'} do |f|
