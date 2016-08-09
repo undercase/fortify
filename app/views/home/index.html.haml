@@ -19,6 +19,24 @@
           = f.text_field :email, class: 'ui input', placeholder: 'Enter your email to get started'
         .four.wide.column
           = f.submit "Let's Go!", class: 'ui inverted button'
+.ui.pro.segment
+  .ui.container
+    %h1.ui.header <span class="coming">Coming Soon:</span> <span class="logo">fortify pro</span>
+    .ui.three.column.equal.height.stackable.grid
+      .column
+        .box
+          %h1.ui.header Nutrition Information
+          = image_tag 'nutrition.png', class: 'ui fluid image'
+      .column
+        .box
+          %h1.ui.header Curated Workouts
+          %h2.ui.header.workout Rock Climbing Workout - Grip Strength
+          %h2.ui.header.workout Long-Distance Running Cardio Workout
+          %h2.ui.header.workout Two Month Six-Pack Building Workout
+      .column
+        .box
+          %h1.ui.header Advanced Tracking
+          = image_tag 'stat.png', class: 'ui fluid image'
 :css
   body {
     background: #000 !important;
