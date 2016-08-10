@@ -89,7 +89,7 @@
               pause.css('display', 'block');
             });
           });
-          function setUp() {
+          function set_up_#{exercise.id}() {
             $('i.play[exercise_id="#{exercise.id}"]').css('display', 'block');
             $('i.pause[exercise_id="#{exercise.id}"]').css('display', 'none');
             $('i.play[exercise_id="#{exercise.id}"]').click(function() {
@@ -119,8 +119,8 @@
               $('h1.ui.header[exercise_id="#{exercise.id}"]').countdown('pause');
             });
           }
-          setUp();
+          set_up_#{exercise.id}();
           $('h1.ui.header[exercise_id="#{exercise.id}"]').on('finish.countdown', function() {
-            setUp();
+            set_up_#{exercise.id}();
           });
 
