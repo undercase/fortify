@@ -11,7 +11,8 @@ class UsersController < ApplicationController
     if (User.where(email: user_params[:email]).empty?)
       @user = User.create(user_params)
       if @user.save
-        redirect_to new_session_path
+        session[:user_id] = @user.id
+        redirect_to root_path
       else
         render 'new'
       end
