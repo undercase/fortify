@@ -9,7 +9,14 @@ class ApplicationController < ActionController::Base
 
 
   def logged_in?
-    return !session[:user_id].nil?
+    if session[:user_id].nil?
+      return false
+    elsif current_user
+      return true
+    else
+      session[:user_id] = nil
+      return false
+    end
   end
 
   def authorize
