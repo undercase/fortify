@@ -20,7 +20,8 @@ ActiveRecord::Schema.define(version: 20160806192704) do
     t.string   "name"
     t.integer  "sets"
     t.integer  "reps"
-    t.integer  "rest_time"
+    t.integer  "minutes"
+    t.integer  "seconds"
     t.integer  "workout_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

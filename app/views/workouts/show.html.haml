@@ -31,14 +31,14 @@
             .reps.field
               = f.text_field :reps, placeholder: '# of Reps'
           .rest.field
-            = f.text_field :rest_time, placeholder: 'Rest Time Between Sets (Minutes)'
+            = f.text_field :minutes, placeholder: 'Rest Time Between Sets (M:S)'
           = f.hidden_field :rest
           = f.submit 'Add Exercise',  class: 'ui button'
       .rest.column
         %h2.ui.header Add a Rest
         = form_for @rest, url: workout_exercises_path(@workout), method: :post, html: {class: 'ui form'} do |f|
           .rest_time.field
-            = f.text_field :rest_time, placeholder: 'Rest Time (Minutes)'
+            = f.text_field :minutes, placeholder: 'Rest Time (M:S)'
           = f.hidden_field :rest
           = f.submit 'Add Rest',  class: 'ui button'
     - @exercises.each do |exercise|
@@ -47,7 +47,7 @@
           .eleven.wide.column
             %h1.ui.header Rest
           .four.wide.column
-            %h1.ui.header{exercise_id: exercise.id} #{exercise.rest_time}min
+            %h1.ui.header{exercise_id: exercise.id} #{exercise.minutes}:#{exercise.seconds.to_s.rjust(2, '0')}
           .one.wide.rest.middle.aligned.column
             %i.big.play.icon{exercise_id: exercise.id}
             %i.big.pause.icon{exercise_id: exercise.id}
@@ -59,7 +59,7 @@
             %h1.ui.header= exercise.name
             %h2.ui.header #{pluralize(exercise.sets, 'Set')} of #{pluralize(exercise.reps, 'Rep')}
           .four.wide.column
-            %h1.ui.header{exercise_id: exercise.id} #{exercise.rest_time}min
+            %h1.ui.header{exercise_id: exercise.id} #{exercise.minutes}:#{exercise.seconds.to_s.rjust(2, '0')}
             %h2.ui.header Rest Between Sets
           .one.wide.exercise.middle.aligned.column
             %i.big.play.icon{exercise_id: exercise.id}
@@ -74,7 +74,8 @@
             var pause = $('i.pause[exercise_id="#{@exercises.first.id}"]');
             var header = $('h1.ui.header[exercise_id="#{@exercises.first.id}"]');
             var d = new Date();
-            d.setMinutes(d.getMinutes() + #{@exercises.first.rest_time});
+            d.setMinutes(d.getMinutes() + #{@exercises.first.minutes});
+            d.setSeconds(d.getSeconds() + #{@exercises.first.seconds});
             header.countdown(d, function(event) {
               header.text(
                 event.strftime('%M:%S')
@@ -94,7 +95,8 @@
             $('i.pause[exercise_id="#{exercise.id}"]').css('display', 'none');
             $('i.play[exercise_id="#{exercise.id}"]').click(function() {
               var d = new Date();
-              d.setMinutes(d.getMinutes() + #{exercise.rest_time});
+              d.setMinutes(d.getMinutes() + #{exercise.minutes});
+              d.setSeconds(d.getSeconds() + #{exercise.seconds});
               $('h1.ui.header[exercise_id="#{exercise.id}"]').countdown(d, function(event) {
                 $(this).text(
                   event.strftime('%M:%S')
