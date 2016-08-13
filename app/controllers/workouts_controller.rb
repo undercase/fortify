@@ -19,7 +19,7 @@ class WorkoutsController < ApplicationController
 
   def start
     @workout = Workout.find(params[:id])
-    @workout.update_attributes(days: @workout.days + 1)
+    @session = @workout.sessions.create()
     redirect_to workout_path(@workout)
   end
 

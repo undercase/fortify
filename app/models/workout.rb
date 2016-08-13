@@ -3,4 +3,5 @@ class Workout < ApplicationRecord
   validates_length_of :name, minimum: 1
   belongs_to :user
   has_many :exercises
+  has_many :sessions
 end

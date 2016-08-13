@@ -32,7 +32,7 @@
           .workout.row
             = link_to workout, class: 'box' do
               .name.attr= workout.name
-              .days.attr #{workout.days} Days
+              .days.attr #{workout.sessions.count} Days
     - else
       %h2.ui.header
         %i It looks like you don't have any workouts yet! Create one above.

@@ -5,4 +5,5 @@ class User < ApplicationRecord
   validates_length_of :first_name, minimum: 1
   validates_length_of :password, minimum: 6
   has_many :workouts
+  has_many :sessions
 end
