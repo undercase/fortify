@@ -25,9 +25,6 @@ class WorkoutsController < ApplicationController
 
   def create
     @workout = current_user.workouts.create(workout_params)
-    if @workout.save
-      @workout.update_attributes(days: 0)
-    end
     redirect_to workouts_path
   end
   
@@ -43,6 +40,6 @@ class WorkoutsController < ApplicationController
 
   protected
     def workout_params
-      params.require(:workout).permit(:name, :days)
+      params.require(:workout).permit(:name)
     end
 end
