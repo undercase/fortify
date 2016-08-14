@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  before_save { |user| user.email = user.email.downcase }
   has_secure_password
   validates_presence_of :email, :first_name
   validates :email, uniqueness: :true
