@@ -30,6 +30,16 @@ class WorkoutsController < ApplicationController
     end
     redirect_to workouts_path
   end
+  
+  def destroy
+    @workout = Workout.find(params[:id])
+    if @workout.user == current_user
+      @workout.exercises.destroy_all
+      @workout.sessions.destroy_all
+      @workout.destroy
+    end
+    redirect_to root_path
+  end
 
   protected
     def workout_params

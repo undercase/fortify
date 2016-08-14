@@ -19,6 +19,9 @@
           .ui.icon.edit.actions.button
             %i.write.icon
             %i.checkmark.icon
+          = link_to workout_path(@workout), method: :delete do
+            .ui.icon.button
+              %i.remove.icon
     .ui.two.column.divided.stackable.add.grid
       .exercise.column
         %h2.ui.header Add an Exercise
